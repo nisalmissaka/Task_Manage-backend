@@ -15,9 +15,21 @@ public class ContactRepository {
     public List<Contact> findAll() {
         return new ArrayList<>(contactList);
     }
-    public Optional<Contact> findById(int id){
+    public Optional<Contact> findById(int id) {
         return contactList.stream()
                 .filter(contact -> contact.getId() == id)
                 .findFirst();
+    }
+    public  Contact save(Contact contact) {
+        if (contact.getId() <= 0) {
+            contact.setId(idCounter++);
+            contactList.add(contact);
+        } else {
+
+        }
+        return contact;
+    }
+    public void deleteById(int id){
+        contactList.removeIf(contact-> contact.getId() == id );
     }
 }
