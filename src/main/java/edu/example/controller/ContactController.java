@@ -5,9 +5,7 @@ import edu.example.model.Contact;
 import edu.example.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,8 +24,8 @@ public class ContactController {
     public ResponseEntity<ApiResponse<List<Contact>>> getAllContacts(){
         return ResponseEntity.ok(contactService.getAllContacts());
     }
-    @GetMapping("/hay")
-    public ResponseEntity<String> statusCheck() {
-        return ResponseEntity.ok("Hay Hay Hay");
+    @PostMapping("/create")
+    public ResponseEntity<ApiResponse<Contact>> createContact(@RequestBody Contact contact) {
+        return ResponseEntity.ok(contactService.addContact(contact));
     }
 }
