@@ -26,4 +26,8 @@ public class ContactController {
     public ResponseEntity<ApiResponse<List<Contact>>> getAllContacts(){
         return ResponseEntity.ok(contactService.getAllContacts());
     }
+    @GetMapping("/hay")
+    public ResponseEntity<String> statusCheck() {
+        return ResponseEntity.ok("Hay Hay Hay");
+    }
 }
