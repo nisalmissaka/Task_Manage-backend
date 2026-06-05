@@ -32,5 +32,15 @@ public class ContactService {
         }
         return new ApiResponse<>(404, "Contact Not Found", null);
     }
+    public ApiResponse<Contact> updateContact(int id, Contact updatedData){
+        return contactRepository.findById(id)
+                .map(existingContact ->{
+                    existingContact.setName(updatedData.getName());
+                    existingContact.setPhoneNumber(updatedData.getPhoneNumber());
+                    contactRepository.save(existingContact);
+                    return new  ApiResponse<>(200, "Contact Update Successfully", existingContact);
+                })
+                .orElse(new ApiResponse<>(404, "Contact Not Found", null));
+    }
 
 }
