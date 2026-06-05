@@ -29,7 +29,12 @@ public class ContactController {
         return ResponseEntity.ok(contactService.addContact(contact));
     }
     @DeleteMapping("/delete{id}")
-    public ResponseEntity<ApiResponse<?>> delete( @PathVariable int id){
+    public ResponseEntity<ApiResponse<?>> delete( @PathVariable int id) {
         return ResponseEntity.ok(contactService.deleteContact(id));
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse<Contact>> updateContact(@PathVariable int id, @RequestBody Contact contactData){
+        ApiResponse<Contact> response = contactService.updateContact(id,contactData);
+        return ResponseEntity.ok(response);
     }
 }
