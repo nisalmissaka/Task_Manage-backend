@@ -16,7 +16,7 @@ public class ContactService {
 
     public ApiResponse<List<Contact>> getAllContacts(){
         List<Contact> contactList = contactRepository.findAll();
-        return  new ApiResponse<>(200,"All contact retreived", contactList);
+        return  new ApiResponse<>(201,"All contact retreived", contactList);
     }
 
     public ApiResponse<Contact> addContact(Contact contact){
